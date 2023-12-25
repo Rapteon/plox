@@ -65,7 +65,7 @@ class Scanner:
             case '*': 
                 self.addToken(TokenType.STAR) 
             case '!':
-                self.addToken(TokenType.BANG_EQUAL) if self.match("=") else self.addToken(TokenType.BANG)
+                self.addToken(TokenType.BANG_EQUAL) if self.match("=") else self.addToken(TokenType.BANG)   # example of ternary operator
             case '=':
                 self.addToken(TokenType.EQUAL_EQUAL) if self.match("=") else self.addToken(TokenType.EQUAL)
             case '>':
@@ -109,8 +109,7 @@ class Scanner:
             typeToken = TokenType.IDENTIFIER
             
         self.addToken(typeToken)
-
-         
+    
     def isAlpha(self, c: chr) -> bool:
        if c == '_':
            return True
@@ -138,10 +137,7 @@ class Scanner:
         if self.current+1 >= len(self.source):
             return '\0'
         return self.source[current+1]
-            
-        
-    
-                    
+                      
     def string(self):
         while self.peek() != '"' and not self.end():
             if self.peek() == '\n':
@@ -155,8 +151,7 @@ class Scanner:
         
         value = self.source[self.start + 1: self.current - 1]
         self.addToken(TokenType.STRING, value)
-        
-        
+             
     def match(self, expected: str):
         if self.end():
             return False
@@ -179,7 +174,7 @@ class Scanner:
         self.current += 1
         return self.source[self.current - 1]
     
-    def addToken(self, typeToken: TokenType, literal=None):
+    def addToken(self, typeToken: TokenType, literal=None):   # in the book, the author made the literal parameter be any object and that is because they can be strings or floats, so we cant just have one type
         text = self.source[self.start : self.current]
         token = Token(typeToken, text, literal, self.line)
         self.tokens.append(token)
