@@ -1,6 +1,5 @@
 import sys
 
-
 hadError = False
 
 def main():
@@ -41,8 +40,9 @@ def error(line, message):
     report(line, "", message)
 
 def report(line, where, message):
-    print("[line " + line + "] Error" + where + ": " + message, file=sys.stderr)
+    print("[line " + str(line) + "] Error" + where + ": " + message, file=sys.stderr)
     hadError = True
 
 
-main()
+if __name__ == "__main__":
+    main()

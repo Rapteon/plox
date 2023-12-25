@@ -9,11 +9,8 @@ class Token:
        self.line = line
        
     def __repr__(self):
-        return self.type + " " + self.lexeme + " " + self.literal
-    
-    """
-    @TODO
-    fix printing of TokenTypes
-    figure out how to print enums
-    how to print literals if the value is None
-    """
+        if self.literal == None:
+            return self.type.name + " " + self.lexeme
+        
+        return self.type.name + " " + self.lexeme + " " + self.literal
+ 
