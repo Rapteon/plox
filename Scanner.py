@@ -152,7 +152,7 @@ class Scanner:
         value = self.source[self.start + 1: self.current - 1]
         self.addToken(TokenType.STRING, value)
              
-    def match(self, expected: str):
+    def match(self, expected: str) -> bool:
         if self.end():
             return False
         
@@ -162,15 +162,15 @@ class Scanner:
         self.current += 1
         return True
     
-    def peek(self):
+    def peek(self) -> chr:
         if self.end():
             return '\0'
         return self.source[self.current]
     
-    def end(self):
+    def end(self) -> bool:
         return self.current >= len(self.source)
     
-    def advance(self):
+    def advance(self) -> chr:
         self.current += 1
         return self.source[self.current - 1]
     
