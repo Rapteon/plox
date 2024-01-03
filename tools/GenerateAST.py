@@ -49,7 +49,7 @@ def defineType(baseName: str, className: str, fieldList: str, path: str):
 
         f.write("\n")
         f.write("   def accept(self, visitor: ExprVisitor):\n")
-        f.write("       visitor.visit" + className + "()\n\n\n\n")
+        f.write("       return visitor.visit" + className + "Expr(self)\n\n\n\n")
 
 
 def defineVisitor(baseName: str, types, path: str):
@@ -57,7 +57,7 @@ def defineVisitor(baseName: str, types, path: str):
         f.write("class ExprVisitor:\n")
 
         for tipo in types:
-            f.write("   def visit" + tipo + "(self, expr):\n")
+            f.write("   def visit" + tipo + "Expr(self, expr: Expr):\n")
             f.write("       pass\n\n")
         f.write("\n\n\n")
 
