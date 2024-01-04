@@ -15,18 +15,14 @@ class Parser:
         expr: Expr = self.comparison()
 
         while self.match(TokenType.BANG_EQUAL, TokenType.EQUAL_EQUAL):
-            operator: Token = (
-                self.previous()
-            )  # Previous token in self.tokens list is the operator because of the self.advance call in self.match()
+            # Previous token in self.tokens list is the operator because of the self.advance call in self.match()
+            operator: Token = self.previous()
             right: Expr = self.comparison()
             expr = Binary(expr, operator, right)
         return expr
 
-    def match(
-        self, *types: TokenType
-    ) -> (
-        bool
-    ):  # returns if any of the TokenTypes are the same as the current TokenType, and increments the counter
+    # returns if any of the TokenTypes are the same as the current TokenType, and increments the counter
+    def match(self, *types: TokenType) -> bool:
         for type in types:
             if self.check(type):
                 self.advance()
