@@ -9,7 +9,7 @@ class Token:
         self.line = line
 
     def __repr__(self):
-        if self.literal == None:
+        if self.literal is None:
             return self.type.name + " " + self.lexeme
 
         return self.type.name + " " + self.lexeme + " " + self.literal
